@@ -22,6 +22,7 @@ public class UserController {
 		return "[REFRESH]get user called with id="+id ;
 	}
 	
+	
 	@PostMapping
 	public String createUser() {
 		return "create user called";
