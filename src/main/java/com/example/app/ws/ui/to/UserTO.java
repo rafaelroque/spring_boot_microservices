@@ -1,12 +1,17 @@
-package com.example.app.ws.ui.model;
+package com.example.app.ws.ui.to;
 
-public class User {
+import java.io.Serializable;
 
-	 private String firstName;
-	 private String lastName;
-	 private String email;
-	 private String id;
-	 private String password;
+public class UserTO implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String password;
 	public String getFirstName() {
 		return firstName;
 	}
@@ -25,30 +30,30 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	
-	
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public User(String firstName, String lastName, String email, String password) {
+	
+	public UserTO(String firstName, String lastName, String email, String password) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 	}
-	 
-	 public static User generateDefault() {
-		 return new User("Rafael", "Viana","rafa834@gmail.com","1");
-	 }
+	
+	public UserTO() {
+		
+	}
+	@Override
+	public String toString() {
+		return "UserTO [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password="
+				+ password + "]";
+	}
+	
+	
 	
 }
