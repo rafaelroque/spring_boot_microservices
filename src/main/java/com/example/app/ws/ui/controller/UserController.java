@@ -8,18 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.app.ws.ui.model.User;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
 	
 	@GetMapping
-	public String getUsers( @RequestParam int page , @RequestParam int limit) {
+	public String getUsers( @RequestParam(value = "page" , required = false) Integer page , 
+			@RequestParam(value = "limit" , defaultValue = "50") int limit) {
 		return "[REFRESH]get users was called with page="+page +" and limit="+limit;
 	}
 	
 	@GetMapping(path="/{id}")
-	public String getUser(@PathVariable String id) {
-		return "[REFRESH]get user called with id="+id ;
+	public User getUser(@PathVariable String id) {
+		return User.generateDefault();
 	}
 	
 	
