@@ -1,4 +1,8 @@
 package com.example.app.ws.ui.controller;
+
+
+import javax.validation.Valid;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,33 +23,31 @@ import com.example.app.ws.ui.to.UserTO;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-	
+
 	@GetMapping
 	public String getUsers( @RequestParam(value = "page" , required = false) Integer page , 
 			@RequestParam(value = "limit" , defaultValue = "50") int limit) {
 		return "[REFRESH]get users was called with page="+page +" and limit="+limit;
 	}
-	
+
 	@GetMapping(path="/{id}" , 
 			produces = {MediaType.APPLICATION_XML_VALUE , MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<User> getUser(@PathVariable String id) {
 		return new ResponseEntity<User>(User.generateDefault(),HttpStatus.OK)
 				;
 	}
-	
-	
-	@PostMapping(
-	produces = {MediaType.APPLICATION_XML_VALUE , MediaType.APPLICATION_JSON_VALUE},
-	consumes = {MediaType.APPLICATION_XML_VALUE , MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<User> createUser(@RequestBody UserTO to) {
+
+
+	@PostMapping
+	public ResponseEntity<User> createUser( @Valid @RequestBody UserTO to) {
 		return new ResponseEntity<User>(UserMapper.fromTo(to),HttpStatus.OK);
 	}
-	
+
 	@PutMapping
 	public String updateUser() {
 		return "update user called";
 	}
-	
+
 	@DeleteMapping
 	public String deleteUser() {
 		return "delete user called";

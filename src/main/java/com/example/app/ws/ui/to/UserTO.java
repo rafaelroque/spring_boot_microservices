@@ -1,17 +1,24 @@
 package com.example.app.ws.ui.to;
 
-import java.io.Serializable;
 
-public class UserTO implements Serializable {
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
+
+public class UserTO {
+
+	
+	@Size(min = 3 , message = "Minimum 3 characters")
 	private String firstName;
+	
 	private String lastName;
+	
+	@Email
 	private String email;
+	
 	private String password;
+	
 	public String getFirstName() {
 		return firstName;
 	}
